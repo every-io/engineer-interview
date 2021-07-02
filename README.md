@@ -43,7 +43,8 @@ You will be creating a basic todo list, with the following functionality.
 1. npm install
 2. npm run start
 3. open your browser to http://localhost:3000
-4. You should be ready to develop
+4. Delete the `h2` from the component in `src/ChallengeComponent.tsx`
+5. Add your code to that component.
 
 
 -----------------------
