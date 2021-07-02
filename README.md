@@ -1,3 +1,6 @@
+## Video Intro
+https://www.loom.com/share/3df7fcb5424644638b00724cb178e2ff
+
 * [Getting Started with the Every.io engineering challenge.](#getting-started-with-the-everyio-engineering-challenge)
   * [The biggest factor will be your code:](#the-biggest-factor-will-be-your-code)
   * [Requirements](#requirements)
