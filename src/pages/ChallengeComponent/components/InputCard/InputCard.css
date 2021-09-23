@@ -1,0 +1,28 @@
+.root {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: auto min-content;
+  align-items: stretch;
+}
+.plus {
+  background: #0066FF;
+  border-radius: 8px;
+  padding: 0px 20px;
+}
+.plus:disabled {
+  background: #5b9afa;
+}
+input {
+  width: 100%;
+  padding: 15px 35px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 26px;
+  color: #757575; 
+}
