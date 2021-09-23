@@ -1,0 +1,18 @@
+.list {
+  background: #FFFFFF;
+  box-shadow: 0px 2px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+h1 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 37px;
+  text-align: center;
+  color: #000000;
+}
