@@ -1,6 +1,7 @@
 import React from 'react'
 import { ChallengeComponent } from './ChallengeComponent'
 import './App.css'
+import { CardsProvider } from './context/cardsContext'
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
           boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
           borderRadius: 40,
         }}>
-        <ChallengeComponent />
+        <CardsProvider>
+          <ChallengeComponent />
+        </CardsProvider>
       </main>
     </div>
   )
