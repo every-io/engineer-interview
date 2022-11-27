@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+}
+
+.input {
+  width: 287px;
+  height: 60px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  margin-right: 32px;
+  padding: 17px 35px;
+  font-size: 1.375rem;
+}
+
+.input::placeholder {
+  color: #757575;
+}
+
+.button {
+  height: 60px;
+  width: 91px;
+  border-radius: 8px;
+  border: none;
+  background: #0066FF;
+  cursor: pointer;
+  font-size: 2.25rem;
+  color: #FFFF;
+}
+
+.button:hover {
+  outline: 1px solid #0066FF;
+}

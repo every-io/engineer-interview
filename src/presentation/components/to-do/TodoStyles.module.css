@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 43px 28px 53px 45px;
+    overflow: hidden;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 33px;
+}
+
+@media only screen and (min-width: 1124px){
+    .container {
+        flex-direction: column-reverse;
+    }
+    .wrapper {
+        flex-direction: row;
+        margin-bottom: 33px;
+        margin-top: 0;
+    }
+}
