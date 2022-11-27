@@ -1,0 +1,39 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+    height: 509px;
+    border-radius: 12px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+
+    margin-bottom: 48px;
+    padding: 0 23px 16px;
+}
+
+
+.name {
+    position: sticky;
+    padding: 16px 0;
+    font-family: Roboto;
+    font-size: 32px;
+    text-align: center;
+    margin: 0 -23px 28px;
+    background: #FFFF;
+    top: 0;
+    z-index: 1;
+}
+
+.wrapper:last-of-type {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+@media only screen and (min-width: 1124px){
+    .wrapper {
+        margin-right: 48px;
+        margin-bottom: 0px;
+    }    
+}    

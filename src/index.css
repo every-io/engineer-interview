@@ -2,4 +2,18 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.459);
+  border-radius: 8px;
+  background-clip: padding-box;
 }
