@@ -1,10 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { TaskBoard } from './components/TaskBoard/TaskBoard';
 
 export function ChallengeComponent() {
-  return (
-    <>
-      {/* Delete this h2, and add your own code here. */}
-      <h2 style={{ textAlign: 'center', paddingTop: 200, paddingBottom: 200 }}>Your code goes here</h2>
-    </>
-  )
+	return <TaskBoard />;
 }
