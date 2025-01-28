@@ -1,4 +1,5 @@
 .taskColumn {
+    min-width: 300px;
 	width: 100%;
 	min-height: 30em;
 	padding: 16px;
@@ -12,4 +13,15 @@
 	font-size: 28px;
 	margin: 0;
 	padding-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+	.taskColumn {
+		padding: 8px;
+	}
+
+	.taskColumn h3 {
+		font-size: 24px;
+		padding-bottom: 1rem;
+	}
 }

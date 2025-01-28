@@ -1,8 +1,21 @@
 .taskBoard {
 	padding: 3rem;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .taskBoardContent {
 	display: flex;
 	gap: 3rem;
+}
+
+@media (max-width: 768px) {
+	.taskBoard {
+		padding: 1rem;
+	}
+	
+	.taskBoardContent {
+		flex-direction: column;
+		gap: 1rem;
+	}
 }

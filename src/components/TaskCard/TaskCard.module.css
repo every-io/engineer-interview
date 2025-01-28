@@ -7,6 +7,7 @@
   background: white;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  min-width: 0;
 }
 
 .taskTitle {
@@ -14,6 +15,10 @@
   text-align: center;
   font-size: 20px;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 8px;
 }
 
 .taskCard button {
@@ -44,4 +49,37 @@
 
 .taskCard button:not(:disabled):hover {
   opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .taskCard {
+    padding: 8px;
+  }
+
+  .taskTitle {
+    font-size: 18px;
+  }
+
+  .taskCard button {
+    font-size: 20px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .taskCard button {
+    width: 100%;
+    margin: 4px 0;
+  }
+
+  .taskTitle {
+    text-align: left;
+    margin: 8px 0;
+  }
 }
