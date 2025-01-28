@@ -21,23 +21,23 @@ export function TaskCard({
 
 	return (
 		<div className={styles.taskCard}>
-			<p>{title}</p>
-			<div className={styles.buttonGroup}>
-				<button
-					onClick={() => onMoveLeft(id)}
-					disabled={isLeftDisabled}
-					aria-label="Move Task Left"
-				>
-					←
-				</button>
-				<button
-					onClick={() => onMoveRight(id)}
-					disabled={isRightDisabled}
-					aria-label="Move Task Right"
-				>
-					→
-				</button>
-			</div>
+			<button
+				onClick={() => onMoveLeft(id)}
+				disabled={isLeftDisabled}
+				aria-label="Move Task Left"
+			>
+				⬅
+			</button>
+
+			<p className={styles.taskTitle}>{title}</p>
+
+			<button
+				onClick={() => onMoveRight(id)}
+				disabled={isRightDisabled}
+				aria-label="Move Task Right"
+			>
+				⮕
+			</button>
 		</div>
 	);
 }
