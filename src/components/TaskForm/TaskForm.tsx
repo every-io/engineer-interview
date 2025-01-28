@@ -17,7 +17,9 @@ export function TaskForm({ onAddTask }: TaskFormProps) {
 
 	return (
 		<form onSubmit={handleSubmit}>
+			<label htmlFor="taskTitle" style={{ display: 'none' }}>New Task</label>
 			<input
+				id="taskTitle"
 				type="text"
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}

@@ -1,25 +1,43 @@
 import React from 'react';
 import type { Task } from '../../types/TaskTypes';
+import styles from './TaskCard.module.css';
 
 interface TaskCardProps {
 	task: Task;
 	onMoveLeft: (taskId: string) => void;
 	onMoveRight: (taskId: string) => void;
+	isLeftDisabled: boolean;
+	isRightDisabled: boolean;
 }
 
-export function TaskCard({ task, onMoveLeft, onMoveRight }: TaskCardProps) {
-	const { id, title, status } = task;
+export function TaskCard({
+	task,
+	onMoveLeft,
+	onMoveRight,
+	isLeftDisabled,
+	isRightDisabled,
+}: TaskCardProps) {
+	const { id, title } = task;
 
 	return (
-		<div>
+		<div className={styles.taskCard}>
 			<p>{title}</p>
-			<p>{status}</p>
-			<button onClick={() => onMoveLeft(id)} disabled={status === 'Todo'}>
-				←
-			</button>
-			<button onClick={() => onMoveRight(id)} disabled={status === 'Done'}>
-				→
-			</button>
+			<div className={styles.buttonGroup}>
+				<button
+					onClick={() => onMoveLeft(id)}
+					disabled={isLeftDisabled}
+					aria-label="Move Task Left"
+				>
+					←
+				</button>
+				<button
+					onClick={() => onMoveRight(id)}
+					disabled={isRightDisabled}
+					aria-label="Move Task Right"
+				>
+					→
+				</button>
+			</div>
 		</div>
 	);
 }

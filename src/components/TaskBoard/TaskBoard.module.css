@@ -1,0 +1,8 @@
+.taskBoard {
+	padding: 3rem;
+}
+
+.taskBoardContent {
+	display: flex;
+	gap: 3rem;
+}
