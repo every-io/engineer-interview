@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './TaskForm.module.css';
 
 interface TaskFormProps {
 	onAddTask: (title: string) => void;
@@ -16,16 +17,19 @@ export function TaskForm({ onAddTask }: TaskFormProps) {
 	}
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<label htmlFor="taskTitle" style={{ display: 'none' }}>New Task</label>
-			<input
-				id="taskTitle"
-				type="text"
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
-				placeholder="Enter a new task"
-			/>
-			<button type="submit">Add Task</button>
-		</form>
-	);
+        <form onSubmit={handleSubmit} className={styles.form}>
+            <label htmlFor="taskTitle" style={{ display: 'none' }}>New Task</label>
+            <input
+                id="taskTitle"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Add Task"
+                className={styles.input}
+            />
+            <button type="submit" className={styles.button}>
+                +
+            </button>
+        </form>
+    );
 }
