@@ -1,4 +1,13 @@
-export type TodoStatus = 'todo' | 'in-progress' | 'done';
+export enum TodoStatus {
+  TODO = 'todo',
+  IN_PROGRESS = 'in-progress',
+  DONE = 'done'
+}
+
+export enum Direction {
+  LEFT = 'left',
+  RIGHT = 'right'
+}
 
 export interface Item {
   id: string;
