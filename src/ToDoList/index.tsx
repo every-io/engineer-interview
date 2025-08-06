@@ -1,40 +1,20 @@
 import React from 'react';
-import { Column, TodoStatus, Direction } from './types';
+import { Direction } from './types';
 import { ListColumn } from './ListColumn';
 import { AddItemForm } from './AddItemForm';
 import { useToDoList } from './useToDoList';
+import { defaultWorkflowConfig, getOrderedStatuses } from './workflowConfig';
 
 export function ToDoList() {
-  const { getItemsByStatus, addTodo, moveItem } = useToDoList();
+  const { itemsByStatus, addItem, moveItem, canMove, config } = useToDoList(defaultWorkflowConfig);
+  const orderedStatuses = getOrderedStatuses(config);
 
-  const toDoColumn: Column = {
-    status: TodoStatus.TODO,
-    title: 'To Do',
-    items: getItemsByStatus(TodoStatus.TODO)
+  const handleMove = (itemId: string, direction: Direction) => {
+    moveItem(itemId, direction);
   };
 
-  const inProgressColumn: Column = {
-    status: TodoStatus.IN_PROGRESS,
-    title: 'In Progress',
-    items: getItemsByStatus(TodoStatus.IN_PROGRESS)
-  };
-
-  const doneColumn: Column = {
-    status: TodoStatus.DONE,
-    title: 'Done',
-    items: getItemsByStatus(TodoStatus.DONE)
-  };
-
-  const handleMoveLeft = (itemId: string) => {
-    moveItem(itemId, Direction.LEFT);
-  };
-
-  const handleMoveRight = (itemId: string) => {
-    moveItem(itemId, Direction.RIGHT);
-  };
-
-  const handleAddTodo = (text: string) => {
-    addTodo(text);
+  const handleAddItem = (text: string) => {
+    addItem(text);
   };
 
   return (
@@ -55,24 +35,18 @@ export function ToDoList() {
         gap: '16px',
         marginBottom: '20px'
       }}>
-        <ListColumn
-          column={toDoColumn}
-          onMoveLeft={handleMoveLeft}
-          onMoveRight={handleMoveRight}
-        />
-        <ListColumn
-          column={inProgressColumn}
-          onMoveLeft={handleMoveLeft}
-          onMoveRight={handleMoveRight}
-        />
-        <ListColumn
-          column={doneColumn}
-          onMoveLeft={handleMoveLeft}
-          onMoveRight={handleMoveRight}
-        />
+        {orderedStatuses.map(status => (
+          <ListColumn
+            key={status.id}
+            title={status.title}
+            items={itemsByStatus[status.id] || []}
+            onMove={handleMove}
+            canMove={canMove}
+          />
+        ))}
       </div>
 
-      <AddItemForm onSubmit={handleAddTodo} />
+      <AddItemForm onSubmit={handleAddItem} />
     </div>
   );
 }

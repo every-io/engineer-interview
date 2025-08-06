@@ -5,8 +5,8 @@ export enum TodoStatus {
 }
 
 export enum Direction {
-  LEFT = 'left',
-  RIGHT = 'right'
+  PREV = 'prev',
+  NEXT = 'next'
 }
 
 export interface Item {
@@ -20,3 +20,6 @@ export interface Column {
   title: string;
   items: Item[];
 }
+
+export type ItemsByStatus = Record<TodoStatus, Item[]>;
+export type TransitionMap = Record<TodoStatus, Record<Direction, TodoStatus>>;
