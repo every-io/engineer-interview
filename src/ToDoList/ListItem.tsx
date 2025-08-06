@@ -20,12 +20,14 @@ export function ListItem({ item, onMove, canMove }: ListItemProps) {
   };
 
   return (
-    <Card style={{
-      margin: '8px 0',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    }}>
+    <Card
+      style={{
+        margin: '8px 0',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
+    >
       <Button
         size="sm"
         color="error"
@@ -34,15 +36,17 @@ export function ListItem({ item, onMove, canMove }: ListItemProps) {
       >
         ←
       </Button>
-      
-      <span style={{
-        flex: 1,
-        textAlign: 'center',
-        padding: '0 12px'
-      }}>
+
+      <span
+        style={{
+          flex: 1,
+          textAlign: 'center',
+          padding: '0 12px',
+        }}
+      >
         {item.text}
       </span>
-      
+
       <Button
         size="sm"
         color="success"

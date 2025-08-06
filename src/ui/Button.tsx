@@ -58,10 +58,17 @@ const buttonStyles = {
     primary: '#0056b3',
     success: '#1e7e34',
     error: '#c82333',
-  }
+  },
 } as const;
 
-export function Button({ size = 'md', color = 'primary', onClick, disabled = false, type = 'button', children }: ButtonProps) {
+export function Button({
+  size = 'md',
+  color = 'primary',
+  onClick,
+  disabled = false,
+  type = 'button',
+  children,
+}: ButtonProps) {
   const handleClick = () => {
     if (!disabled && onClick) {
       onClick();
@@ -79,14 +86,16 @@ export function Button({ size = 'md', color = 'primary', onClick, disabled = fal
       }}
       onClick={handleClick}
       disabled={disabled}
-      onMouseOver={(e) => {
+      onMouseOver={e => {
         if (!disabled) {
-          (e.target as HTMLButtonElement).style.backgroundColor = buttonStyles.hover[color];
+          (e.target as HTMLButtonElement).style.backgroundColor =
+            buttonStyles.hover[color];
         }
       }}
-      onMouseOut={(e) => {
+      onMouseOut={e => {
         if (!disabled) {
-          (e.target as HTMLButtonElement).style.backgroundColor = buttonStyles.colors[color].backgroundColor;
+          (e.target as HTMLButtonElement).style.backgroundColor =
+            buttonStyles.colors[color].backgroundColor;
         }
       }}
     >

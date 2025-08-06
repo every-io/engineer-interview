@@ -38,10 +38,26 @@ export const defaultWorkflowConfig: WorkflowConfig = {
     },
   ],
   transitions: [
-    { from: TodoStatus.TODO, to: TodoStatus.IN_PROGRESS, direction: Direction.NEXT },
-    { from: TodoStatus.IN_PROGRESS, to: TodoStatus.DONE, direction: Direction.NEXT },
-    { from: TodoStatus.IN_PROGRESS, to: TodoStatus.TODO, direction: Direction.PREV },
-    { from: TodoStatus.DONE, to: TodoStatus.IN_PROGRESS, direction: Direction.PREV },
+    {
+      from: TodoStatus.TODO,
+      to: TodoStatus.IN_PROGRESS,
+      direction: Direction.NEXT,
+    },
+    {
+      from: TodoStatus.IN_PROGRESS,
+      to: TodoStatus.DONE,
+      direction: Direction.NEXT,
+    },
+    {
+      from: TodoStatus.IN_PROGRESS,
+      to: TodoStatus.TODO,
+      direction: Direction.PREV,
+    },
+    {
+      from: TodoStatus.DONE,
+      to: TodoStatus.IN_PROGRESS,
+      direction: Direction.PREV,
+    },
   ],
 };
 

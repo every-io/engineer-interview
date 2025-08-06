@@ -22,13 +22,14 @@ export function Card({ children, className, style }: CardProps) {
   };
 
   return (
-    <div 
-      className={className} 
+    <div
+      className={className}
       style={combinedStyles}
-      onMouseOver={(e) => {
-        (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.15)';
+      onMouseOver={e => {
+        (e.currentTarget as HTMLElement).style.boxShadow =
+          '0 4px 8px rgba(0, 0, 0, 0.15)';
       }}
-      onMouseOut={(e) => {
+      onMouseOut={e => {
         (e.currentTarget as HTMLElement).style.boxShadow = cardStyles.boxShadow;
       }}
     >

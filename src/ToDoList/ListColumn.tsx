@@ -11,17 +11,21 @@ interface ListColumnProps {
 
 export function ListColumn({ title, items, onMove, canMove }: ListColumnProps) {
   return (
-    <Card style={{
-      flex: 1,
-      minHeight: '400px'
-    }}>
-      <h3 style={{
-        textAlign: 'center',
-        marginBottom: '16px'
-      }}>
+    <Card
+      style={{
+        flex: 1,
+        minHeight: '400px',
+      }}
+    >
+      <h3
+        style={{
+          textAlign: 'center',
+          marginBottom: '16px',
+        }}
+      >
         {title}
       </h3>
-      
+
       <div>
         {items.map(item => (
           <ListItem
