@@ -9,7 +9,7 @@ export function ToDoList() {
 
   const toDoColumn: Column = {
     status: TodoStatus.TODO,
-    title: 'Todo',
+    title: 'To Do',
     items: getItemsByStatus(TodoStatus.TODO)
   };
 

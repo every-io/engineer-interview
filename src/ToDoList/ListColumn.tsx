@@ -1,6 +1,7 @@
-import React from 'react';
-import { Column } from './types';
+import { Column, TodoStatus } from './types';
 import { ListItem } from './ListItem';
+import { Card } from '../ui';
+import { STATUS_CODES } from 'http';
 
 interface ListColumnProps {
   column: Column;
@@ -10,13 +11,8 @@ interface ListColumnProps {
 
 export function ListColumn({ column, onMoveLeft, onMoveRight }: ListColumnProps) {
   return (
-    <div style={{
+    <Card style={{
       flex: 1,
-      backgroundColor: '#f8f9fa',
-      border: '1px solid #dee2e6',
-      borderRadius: '8px',
-      padding: '16px',
-      margin: '0 8px',
       minHeight: '400px'
     }}>
       <h3 style={{
@@ -35,11 +31,11 @@ export function ListColumn({ column, onMoveLeft, onMoveRight }: ListColumnProps)
             item={item}
             onMoveLeft={() => onMoveLeft(item.id)}
             onMoveRight={() => onMoveRight(item.id)}
-            canMoveLeft={column.status !== 'todo'}
-            canMoveRight={column.status !== 'done'}
+            canMoveLeft={column.status !== TodoStatus.TODO}
+            canMoveRight={column.status !== TodoStatus.DONE}
           />
         ))}
       </div>
-    </div>
+    </Card>
   );
 }

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Item } from './types';
+import { Button, Card } from '../ui';
 
 interface ListItemProps {
   item: Item;
@@ -11,32 +11,20 @@ interface ListItemProps {
 
 export function ListItem({ item, onMoveLeft, onMoveRight, canMoveLeft, canMoveRight }: ListItemProps) {
   return (
-    <div style={{
-      backgroundColor: '#fff',
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      padding: '12px',
+    <Card style={{
       margin: '8px 0',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
     }}>
-      <button
+      <Button
+        size="sm"
+        color="error"
         onClick={onMoveLeft}
         disabled={!canMoveLeft}
-        style={{
-          background: canMoveLeft ? 'red' : 'lightcoral',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          padding: '4px 8px',
-          cursor: canMoveLeft ? 'pointer' : 'not-allowed',
-          fontSize: '12px'
-        }}
       >
         ←
-      </button>
+      </Button>
       
       <span style={{
         flex: 1,
@@ -46,21 +34,14 @@ export function ListItem({ item, onMoveLeft, onMoveRight, canMoveLeft, canMoveRi
         {item.text}
       </span>
       
-      <button
+      <Button
+        size="sm"
+        color="success"
         onClick={onMoveRight}
         disabled={!canMoveRight}
-        style={{
-          background: canMoveRight ? 'green' : 'lightgreen',
-          color: 'white',
-          border: 'none',
-          borderRadius: '4px',
-          padding: '4px 8px',
-          cursor: canMoveRight ? 'pointer' : 'not-allowed',
-          fontSize: '12px'
-        }}
       >
         →
-      </button>
-    </div>
+      </Button>
+    </Card>
   );
 }
