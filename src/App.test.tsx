@@ -1,9 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App", () => {
+  it("renders welcome message", () => {
+    render(<App />);
+    const linkElement = screen.getByText(
+      /Welcome To The Every.io Code Challenge/i
+    );
+    expect(linkElement).toBeInTheDocument();
+  });
 });
