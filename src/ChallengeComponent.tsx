@@ -1,5 +1,7 @@
 import { TaskColumn } from "./components/TaskColumn";
 import { TaskForm } from "./components/TaskForm";
+import { useTasks } from "./hooks/useTask";
+import { Board } from "./types";
 
 const columns = [
   {
@@ -19,16 +21,17 @@ const columns = [
   },
 ]
 
-const mockedTasks = [
-  {id: 'task-1', text: 'Mow The lawn', columnId: 'todo'},
-  {id: 'task-2', text: 'Pull Weeds', columnId: 'inProgress'},
-  {id: 'task-1', text: 'Rake the leaves', columnId: 'done'}
-]
+const board: Board = {
+  id: '1',
+  name: 'interview',
+  columns: columns
+}
 
 export function ChallengeComponent() {
+  const { tasks, addTask, moveTask } = useTasks({ board })
 
   const getTasksForColumn = (columnId: string) => {
-    return mockedTasks.filter(task => task.columnId === columnId)
+    return tasks.filter(task => task.columnId === columnId)
   }
 
   return ( 
@@ -36,12 +39,17 @@ export function ChallengeComponent() {
       <div className="flex justify-around">
         {
           columns.map((column) => (
-            <TaskColumn key={column.id} column={column} tasks={getTasksForColumn(column.id)}/>
+            <TaskColumn 
+              key={column.id} 
+              column={column} 
+              tasks={getTasksForColumn(column.id)} 
+              onMoveTask={moveTask} 
+            />
           ))
         }
       </div>
 
-      <TaskForm />
+      <TaskForm onAddTask={addTask} />
     </div>
   );
 }

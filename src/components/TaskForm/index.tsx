@@ -1,13 +1,18 @@
  import { ChangeEvent, FormEvent, useState } from "react";
 import { Plus } from "react-feather";
 
-export function TaskForm() {
+interface TaskFormProps {
+    onAddTask: (text: string) => void;
+}
+
+export function TaskForm({ onAddTask }: TaskFormProps) {
     const [newTaskText, setNewTaskText] = useState('')
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         const trimText = newTaskText.trim();
         if(trimText) {
+            onAddTask(trimText);
             setNewTaskText('');
         }
     }
