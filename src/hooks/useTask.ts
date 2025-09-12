@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { Task, Direction, Board, DIRECTION } from "../types";
+import { mockedTasks } from "../mocks";
 
 interface UseTaskOptions {
     board: Board | null
@@ -11,11 +12,7 @@ interface UseTaskReturn {
     moveTask: (taskId:string, direction: Direction) => void;
 }
 
-const mockedTasks = [
-  {id: 'task-1', text: 'Mow The lawn', columnId: 'todo', boardId: '1', updatedAt: '2025-01-01T10:00:00Z'},
-  {id: 'task-2', text: 'Pull Weeds', columnId: 'inProgress', boardId: '1', updatedAt: '2025-01-01T10:00:00Z'},
-  {id: 'task-3', text: 'Rake the leaves', columnId: 'done', boardId: '1', updatedAt: '2025-01-01T10:00:00Z'}
-]
+
 
 export const useTasks = ({ board }: UseTaskOptions): UseTaskReturn => {
     const [tasks, setTasks] = useState<Task[]>(mockedTasks)
@@ -72,6 +69,6 @@ export const useTasks = ({ board }: UseTaskOptions): UseTaskReturn => {
     return {
         tasks: sortedTasksByUpdatedDate,
         addTask,
-        moveTask
+        moveTask,
     }
 }
