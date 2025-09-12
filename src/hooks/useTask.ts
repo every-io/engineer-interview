@@ -12,9 +12,9 @@ interface UseTaskReturn {
 }
 
 const mockedTasks = [
-  {id: 'task-1', text: 'Mow The lawn', columnId: 'todo', boardId: '1'},
-  {id: 'task-2', text: 'Pull Weeds', columnId: 'inProgress', boardId: '1'},
-  {id: 'task-3', text: 'Rake the leaves', columnId: 'done', boardId: '1'}
+  {id: 'task-1', text: 'Mow The lawn', columnId: 'todo', boardId: '1', updatedAt: '2025-01-01T10:00:00Z'},
+  {id: 'task-2', text: 'Pull Weeds', columnId: 'inProgress', boardId: '1', updatedAt: '2025-01-01T10:00:00Z'},
+  {id: 'task-3', text: 'Rake the leaves', columnId: 'done', boardId: '1', updatedAt: '2025-01-01T10:00:00Z'}
 ]
 
 export const useTasks = ({ board }: UseTaskOptions): UseTaskReturn => {
@@ -27,7 +27,8 @@ export const useTasks = ({ board }: UseTaskOptions): UseTaskReturn => {
             id: crypto.randomUUID(),
             text,
             columnId: 'todo',
-            boardId: board.id
+            boardId: board.id,
+            updatedAt: new Date().toISOString()
         }
 
         setTasks(prevTasks => [...prevTasks, newTask])
@@ -56,6 +57,7 @@ export const useTasks = ({ board }: UseTaskOptions): UseTaskReturn => {
                     return {
                         ...task,
                         columnId: targetColumn.id,
+                        updatedAt: new Date().toISOString()
                     }
                 }
                 return task;
@@ -63,8 +65,10 @@ export const useTasks = ({ board }: UseTaskOptions): UseTaskReturn => {
         })
     },[board])
 
+    const sortedTasksByUpdatedDate = tasks.sort((a, b) => new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime());
+
     return {
-        tasks,
+        tasks: sortedTasksByUpdatedDate,
         addTask,
         moveTask
     }

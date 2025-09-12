@@ -15,6 +15,7 @@ export interface Task {
     text: string;
     columnId: string;
     boardId: string;
+    updatedAt: string;
 }
 
 export type Direction = 'left' | 'right'
