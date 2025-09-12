@@ -41,9 +41,12 @@ describe('TaskForm', () => {
     render(<TaskForm onAddTask={mockOnAddTask} />);
 
     const input = screen.getByRole('textbox', {
-        name: /new task text/i
+      name: /new task text/i
     }) as HTMLInputElement;
-    const button = screen.getByRole('button');
+    
+    const button = screen.getByRole('button', {
+      name: /new task button/i
+    })
 
     await act(async () => {
         await user.click(button);
