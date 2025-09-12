@@ -1,4 +1,5 @@
 import { TaskColumn } from "./components/TaskColumn";
+import { TaskForm } from "./components/TaskForm";
 
 const columns = [
   {
@@ -31,12 +32,16 @@ export function ChallengeComponent() {
   }
 
   return ( 
-    <div className="flex justify-around p-8">
-      {
-        columns.map((column) => (
-          <TaskColumn key={column.id} column={column} tasks={getTasksForColumn(column.id)}/>
-        ))
-      }
+    <div className="flex flex-col justify-around p-8">
+      <div className="flex justify-around">
+        {
+          columns.map((column) => (
+            <TaskColumn key={column.id} column={column} tasks={getTasksForColumn(column.id)}/>
+          ))
+        }
+      </div>
+
+      <TaskForm />
     </div>
   );
 }
