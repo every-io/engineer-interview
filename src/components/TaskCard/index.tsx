@@ -15,6 +15,7 @@ export function TaskCard({ task, onMoveLeft, onMoveRight, isFirstColumn, isLastC
             onClick={() => onMoveLeft(task.id)}
             disabled={isFirstColumn}
             className={`rounded-md h-16 w-12 flex justify-center items-center ${isFirstColumn ? "bg-red-disabled" :"bg-red"}`}
+            data-testid={`move-left-${task.id}`}
         >
             <ArrowLeft color="white" size={36}/>
         </button>
@@ -23,6 +24,7 @@ export function TaskCard({ task, onMoveLeft, onMoveRight, isFirstColumn, isLastC
             onClick={() => onMoveRight(task.id)}
             disabled={isLastColumn}
             className={`rounded-md h-16 w-12 flex justify-center items-center ${isLastColumn ? "bg-green-disabled" :"bg-green"}`}
+            data-testid={`move-right-${task.id}`}
         >
             <ArrowRight color="white" size={36}/>
         </button>
