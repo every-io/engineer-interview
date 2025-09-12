@@ -38,12 +38,14 @@ export function ChallengeComponent() {
     <div className="flex flex-col justify-around p-8">
       <div className="flex justify-around">
         {
-          columns.map((column) => (
+          columns.map((column, index) => (
             <TaskColumn 
               key={column.id} 
               column={column} 
               tasks={getTasksForColumn(column.id)} 
               onMoveTask={moveTask} 
+              isFirstColumn={index === 0}
+              isLastColumn={index === columns.length - 1}
             />
           ))
         }

@@ -36,7 +36,7 @@ export function TaskForm({ onAddTask }: TaskFormProps) {
                 />
                 <button
                     type="submit"
-                    className="bg-blue-700 rounded-lg h-16 w-28 flex justify-center items-center">
+                    className="bg-blue-button rounded-lg h-16 w-28 flex justify-center items-center">
                     <Plus color="white" size={36}/>
                 </button>
             </div>

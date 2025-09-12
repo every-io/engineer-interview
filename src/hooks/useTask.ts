@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Task, Direction, Board, DIRECTION } from "../types";
 
 interface UseTaskOptions {
@@ -65,7 +65,9 @@ export const useTasks = ({ board }: UseTaskOptions): UseTaskReturn => {
         })
     },[board])
 
-    const sortedTasksByUpdatedDate = tasks.sort((a, b) => new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime());
+    const sortedTasksByUpdatedDate = useMemo(() => {
+       return tasks.sort((a, b) => new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime());
+    },[ tasks])
 
     return {
         tasks: sortedTasksByUpdatedDate,
