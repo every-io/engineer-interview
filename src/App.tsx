@@ -1,4 +1,4 @@
-import { ChallengeComponent } from "./ChallengeComponent";
+import { ChallengeComponent } from "./components";
 
 function App() {
   return (
