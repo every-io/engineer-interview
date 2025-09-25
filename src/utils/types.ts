@@ -16,10 +16,17 @@ export type State = {
   tasks: Record<string, Task>
 };
 
-export type Action = {
-  type: (typeof ACTIONS)[keyof typeof ACTIONS]
+export type UpdateTaskAction = {
+  type: typeof ACTIONS.UPDATE_TASK
   payload: Task
 }
+
+export type CreateTaskAction = {
+  type: typeof ACTIONS.CREATE_TASK
+  payload: { title: string }
+}
+
+export type Action = CreateTaskAction | UpdateTaskAction
 
 export type ContextType = {
   dispatch: React.Dispatch<Action>
