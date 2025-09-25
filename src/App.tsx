@@ -1,4 +1,5 @@
 import { ChallengeComponent } from "./components";
+import { TasksProvider } from "./providers";
 
 function App() {
   return (
@@ -20,8 +21,11 @@ function App() {
           </div>
         </div>
       </header>
+
       <main className="w-full max-w-[calc(100vw-50px)] mx-auto bg-gray-50 border border-black shadow-lg rounded-[40px] mt-4">
-        <ChallengeComponent />
+        <TasksProvider>
+          <ChallengeComponent />
+        </TasksProvider>
       </main>
     </div>
   );
