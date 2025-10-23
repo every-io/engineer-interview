@@ -20,6 +20,24 @@ export function ChallengeComponent() {
     setNewTask("");
   }
 
+  const moveTaskNext = (colId, item) => {
+    if(colId < 2) {
+      const updatedColumns = [...columns];
+      updatedColumns[colId + 1].items.push(item)
+      updatedColumns[colId].items = updatedColumns[colId].items.filter(task => task !== item);
+      setColumns(updatedColumns);
+    }
+  }
+
+  const moveTaskPrev = (colId, item) => {
+    if(colId > 0) {
+      const updatedColumns = [...columns];
+      updatedColumns[colId - 1].items.push(item)
+      updatedColumns[colId].items = updatedColumns[colId].items.filter(task => task !== item);
+      setColumns(updatedColumns);
+    }
+  }
+
   return (
     <Container>
       <ColumnContainer>
@@ -27,7 +45,7 @@ export function ChallengeComponent() {
           <Column key={column.id}>
             <h2>{column.title}</h2>
             {column.items.map((item) => (
-              <TaskItem task={item} colId={column.id}/>
+              <TaskItem task={item} colId={column.id} moveTaskNext={moveTaskNext} moveTaskPrev={moveTaskPrev}/>
             ))}
           </Column>
         ))}

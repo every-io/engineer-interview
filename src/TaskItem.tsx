@@ -4,27 +4,29 @@
     interface TaskItemProps {
         task: string;
         colId: number;
+        moveTaskNext: (colId: number, item: string) => void;
+        moveTaskPrev: (colId: number, item: string) => void;
     }
 
-    export function TaskItem({ task, colId }: TaskItemProps) {
+    export function TaskItem({ task, colId, moveTaskNext, moveTaskPrev }: TaskItemProps) {
     return (
         <TaskContainer>
-            <NavButton color={'red'} disabled={colId === 0}>&#8592;</NavButton>
+             <NavButton color={'red'} disabled={colId === 0} onClick={() => moveTaskPrev(colId, task)}>&#8592;</NavButton>
             <p>{task}</p>
-            <NavButton color={'green'} disabled={colId === 2}>&#8594;</NavButton>
+            <NavButton color={'green'} disabled={colId === 2} onClick={() => moveTaskNext(colId, task)}>&#8594;</NavButton>
         </TaskContainer>
     );
     }
 
     const TaskContainer = styled.div`
-    width: 100%;
-    border: 1px solid grey;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 4px 0;
+        width: 100%;
+        border: 1px solid grey;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+        margin: 4px 0;
     `;
 
     const NavButton = styled.button<{color: string, disabled: boolean}>`
