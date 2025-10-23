@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import {TaskItem} from './TaskItem'
+
 export function ChallengeComponent() {
   const columnInitialData = [
     {id: 0, title: "To Do", items: []},
@@ -25,7 +27,7 @@ export function ChallengeComponent() {
           <Column key={column.id}>
             <h2>{column.title}</h2>
             {column.items.map((item) => (
-              <div>{item}</div>
+              <TaskItem task={item}/>
             ))}
           </Column>
         ))}
@@ -54,6 +56,7 @@ const Column = styled.div`
   min-height: 300px;
   width: 30%;
   padding: 25px;
+  justify-items: center;
 `;
 
 const Input = styled.input`
