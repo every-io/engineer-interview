@@ -27,7 +27,7 @@ export function ChallengeComponent() {
           <Column key={column.id}>
             <h2>{column.title}</h2>
             {column.items.map((item) => (
-              <TaskItem task={item}/>
+              <TaskItem task={item} colId={column.id}/>
             ))}
           </Column>
         ))}
