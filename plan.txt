@@ -32,3 +32,6 @@ El plan:
 
 - random
     - local storage persistence??
+        - nah
+    - shortcuts/accessibility/tab focus/etc???
+        - also nah

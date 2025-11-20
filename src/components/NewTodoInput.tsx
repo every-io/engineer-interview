@@ -24,8 +24,22 @@ const NewTodoInput = ({ onSubmit }: NewTodoInputProps) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input name="todoName" placeholder="Add Task" type="text" onChange={handleChange} value={todoName} />
-            <button type="submit" disabled={!todoName.trim()}>Add</button>
+            <input
+                className="border border-gray-200 p-2 rounded-lg shadow-md"
+                name="todoName"
+                placeholder="Add Task"
+                type="text"
+                onChange={handleChange}
+                value={todoName}
+            />
+
+            <button
+                className="bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+                type="submit"
+                disabled={!todoName.trim()}
+            >
+                Add
+            </button>
         </form>
     )
 };
