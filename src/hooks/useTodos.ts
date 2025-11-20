@@ -4,7 +4,6 @@ import { Category, Todo } from "../types";
 
 interface UseTodosAPI {
     categories: Category[];
-    todos: Todo[];
     createTodo: (name: string) => void;
     getCategoryItems: (categoryId: string) => Todo[];
 }
@@ -54,7 +53,6 @@ const useTodos = (categoryNames: string[]): UseTodosAPI => {
 
     return {
         categories,
-        todos,
         createTodo,
         getCategoryItems,
     };

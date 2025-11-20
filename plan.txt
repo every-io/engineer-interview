@@ -19,6 +19,7 @@ El plan:
 
 - tests
     - i assume claude will be able to one shot proper test coverage for this but i guess we'll see
+        - spoiler: it did not
     - unit tests for new hook API, a couple integration tests for testing the whole jawn
     - manually smoke test everything
 
