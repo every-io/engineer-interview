@@ -11,7 +11,7 @@ interface CategoryColumnProps {
 
 const CategoryColumn = ({ category, todos, isLeftmostCategory = false, isRightmostCategory = false, moveTodo }: CategoryColumnProps) => {
     return (
-        <div className="flex-1 border border-gray-200 p-4 rounded-lg shadow-md">
+        <div className="flex-1 border border-gray-200 p-4 rounded-lg shadow-md min-h-96">
             <div className="text-center">
                 <h2 className="text-2xl">{category.name}</h2>
             </div>

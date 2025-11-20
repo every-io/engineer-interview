@@ -34,11 +34,11 @@ const NewTodoInput = ({ onSubmit }: NewTodoInputProps) => {
             />
 
             <button
-                className="bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+                className="bg-blue-500 text-white p-2 rounded-lg shadow-md hover:bg-blue-600 transition-colors px-4 ml-2"
                 type="submit"
                 disabled={!todoName.trim()}
             >
-                Add
+                +
             </button>
         </form>
     )
