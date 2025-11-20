@@ -28,3 +28,6 @@ El plan:
     - todoItem
     - moveTodoButton
     - newTodoInput
+
+- random
+    - local storage persistence??

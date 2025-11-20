@@ -1,10 +1,21 @@
+import CategoryColumn from "./components/Category";
+import { CATEGORY_NAMES } from "./constants";
+import useTodos from "./hooks/useTodos";
+
 export function ChallengeComponent() {
+  const { categories, todos, createTodo, getCategoryItems } = useTodos(CATEGORY_NAMES);
+
   return (
     <>
-      {/* Delete this h2, and add your own code here. */}
-      <h2 className="text-center py-48 text-xl text-gray-700">
-        Your code goes here
-      </h2>
+      {categories.map(category => {
+        const categoryTodos = getCategoryItems(category.id);
+
+        return (
+          <div key={category.id}>
+            <CategoryColumn category={category} todos={todos.filter(todo => todo.categoryId === category.id)} />
+          </div>
+        )
+      })}
     </>
   );
 }
