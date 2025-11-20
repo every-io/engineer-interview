@@ -21,6 +21,9 @@ El plan:
     - i assume claude will be able to one shot proper test coverage for this but i guess we'll see
         - spoiler: it did not
     - unit tests for new hook API, a couple integration tests for testing the whole jawn
+        - I ended up skipping the integration tests at the end, just for time's sake. there isn't
+        much that's actually being "integrated" anyway, so figured this was fine considering the
+        unit test coverage for the hook
     - manually smoke test everything
 
 - components
