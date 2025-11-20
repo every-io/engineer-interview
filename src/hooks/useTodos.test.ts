@@ -230,5 +230,217 @@ describe("useTodos", () => {
       expect(shoppingItems).toHaveLength(0);
     });
   });
+
+  describe("isCategoryAtEdge", () => {
+    it("should return true for first category when direction is left", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      const firstCategoryId = result.current.categories[0].id;
+      const isAtEdge = result.current.isCategoryAtEdge(firstCategoryId, "left");
+
+      expect(isAtEdge).toBe(true);
+    });
+
+    it("should return false for first category when direction is right", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      const firstCategoryId = result.current.categories[0].id;
+      const isAtEdge = result.current.isCategoryAtEdge(firstCategoryId, "right");
+
+      expect(isAtEdge).toBe(false);
+    });
+
+    it("should return true for last category when direction is right", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      const lastCategoryId = result.current.categories[2].id;
+      const isAtEdge = result.current.isCategoryAtEdge(lastCategoryId, "right");
+
+      expect(isAtEdge).toBe(true);
+    });
+
+    it("should return false for last category when direction is left", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      const lastCategoryId = result.current.categories[2].id;
+      const isAtEdge = result.current.isCategoryAtEdge(lastCategoryId, "left");
+
+      expect(isAtEdge).toBe(false);
+    });
+
+    it("should return false for middle category in both directions", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      const middleCategoryId = result.current.categories[1].id;
+      const isAtLeftEdge = result.current.isCategoryAtEdge(middleCategoryId, "left");
+      const isAtRightEdge = result.current.isCategoryAtEdge(middleCategoryId, "right");
+
+      expect(isAtLeftEdge).toBe(false);
+      expect(isAtRightEdge).toBe(false);
+    });
+
+    it("should return true for single category in both directions", () => {
+      const { result } = renderHook(() => useTodos(["OnlyCategory"]));
+
+      const categoryId = result.current.categories[0].id;
+      const isAtLeftEdge = result.current.isCategoryAtEdge(categoryId, "left");
+      const isAtRightEdge = result.current.isCategoryAtEdge(categoryId, "right");
+
+      expect(isAtLeftEdge).toBe(true);
+      expect(isAtRightEdge).toBe(true);
+    });
+
+    it("should work correctly with two categories", () => {
+      const { result } = renderHook(() => useTodos(["First", "Second"]));
+
+      const firstId = result.current.categories[0].id;
+      const secondId = result.current.categories[1].id;
+
+      expect(result.current.isCategoryAtEdge(firstId, "left")).toBe(true);
+      expect(result.current.isCategoryAtEdge(firstId, "right")).toBe(false);
+      expect(result.current.isCategoryAtEdge(secondId, "left")).toBe(false);
+      expect(result.current.isCategoryAtEdge(secondId, "right")).toBe(true);
+    });
+  });
+
+  describe("moveTodo", () => {
+    it("should move todo from first to second category when direction is right", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      const firstCategoryId = result.current.categories[0].id;
+      const secondCategoryId = result.current.categories[1].id;
+
+      act(() => {
+        result.current.createTodo("Test Task");
+      });
+
+      const todoId = result.current.todos[0].id;
+      expect(result.current.todos[0].categoryId).toBe(firstCategoryId);
+
+      act(() => {
+        result.current.moveTodo(todoId, "right");
+      });
+
+      expect(result.current.todos[0].categoryId).toBe(secondCategoryId);
+    });
+
+    it("should move todo from second to first category when direction is left", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      const firstCategoryId = result.current.categories[0].id;
+      const secondCategoryId = result.current.categories[1].id;
+
+      act(() => {
+        result.current.createTodo("Test Task");
+      });
+
+      const todoId = result.current.todos[0].id;
+
+      // Move right first
+      act(() => {
+        result.current.moveTodo(todoId, "right");
+      });
+
+      expect(result.current.todos[0].categoryId).toBe(secondCategoryId);
+
+      // Move back left
+      act(() => {
+        result.current.moveTodo(todoId, "left");
+      });
+
+      expect(result.current.todos[0].categoryId).toBe(firstCategoryId);
+    });
+
+    it("should throw an error when moving todo left from first category", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      act(() => {
+        result.current.createTodo("Test Task");
+      });
+
+      const todoId = result.current.todos[0].id;
+
+      expect(() => {
+        act(() => {
+          result.current.moveTodo(todoId, "left");
+        });
+      }).toThrow("New category not found");
+    });
+
+    it("should throw an error when moving todo right from last category", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      act(() => {
+        result.current.createTodo("Test Task");
+      });
+
+      const todoId = result.current.todos[0].id;
+
+      // Move to last category
+      act(() => {
+        result.current.moveTodo(todoId, "right");
+      });
+
+      act(() => {
+        result.current.moveTodo(todoId, "right");
+      });
+
+      expect(() => {
+        act(() => {
+          result.current.moveTodo(todoId, "right");
+        });
+      }).toThrow("New category not found");
+    });
+
+    it("should throw error when todo is not found", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      expect(() => {
+        act(() => {
+          result.current.moveTodo("non-existent-id", "right");
+        });
+      }).toThrow("Todo not found");
+    });
+
+    it("should preserve todo properties when moving", () => {
+      const { result } = renderHook(() =>
+        useTodos(["Work", "Personal", "Shopping"])
+      );
+
+      act(() => {
+        result.current.createTodo("Important Task");
+      });
+
+      const todoId = result.current.todos[0].id;
+      const todoName = result.current.todos[0].name;
+
+      act(() => {
+        result.current.moveTodo(todoId, "right");
+      });
+
+      expect(result.current.todos[0].id).toBe(todoId);
+      expect(result.current.todos[0].name).toBe(todoName);
+    });
+  });
 });
 
