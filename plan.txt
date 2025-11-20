@@ -1,0 +1,40 @@
+A scratch pad for me to think through my plan of attack. normally i just scribble
+this kind of stuff onto whatever scrap paper is closest to me, but figured
+the extra insight for y'all wouldnt hurt
+
+El plan:
+
+- `useTodos` hook?
+    - accept arbitrary number/order of categories
+        - use array order for now, keep it simple
+        - generate a UUID in memory for each category, just to avoid key conflicts that could result from reusing category names
+
+    - return API for creating and moving todos
+        - createTodo(name: string) -> Todo
+        - canMoveTodo(todoId: string, direction: 'left' | 'right') -> boolean
+            - this should probs live at the 'category' level, actually
+            - when rendering each category, have it pass this bool into each todo
+
+        - moveTodo(todoId: string, direction: 'left' | 'right') -> void
+
+- tests
+    - i assume claude will be able to one shot proper test coverage for this but i guess we'll see
+        - spoiler: it did not
+    - unit tests for new hook API, a couple integration tests for testing the whole jawn
+        - I ended up skipping the integration tests at the end, just for time's sake. there isn't
+        much that's actually being "integrated" anyway, so figured this was fine considering the
+        unit test coverage for the hook
+    - manually smoke test everything
+
+- components
+    - todoList (wrapper)
+    - category
+    - todoItem
+    - moveTodoButton
+    - newTodoInput
+
+- random
+    - local storage persistence??
+        - nah
+    - shortcuts/accessibility/tab focus/etc???
+        - also nah
